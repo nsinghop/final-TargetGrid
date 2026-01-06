@@ -1,9 +1,9 @@
 import prisma from '../utils/database.js';
 import logger from '../utils/logger.js';
-import { eventQueue } from '../queue/connection.js';
+import { ScoringService } from './scoringService.js';
 
 export class EventService {
-  static async createEvent(eventData) {
+  static async createEvent(eventData, io = null) {
     try {
       // Check for duplicate event_id (idempotency)
       const existingEvent = await prisma.event.findUnique({
@@ -26,29 +26,63 @@ export class EventService {
         },
       });
 
-      // Add to processing queue
-      await eventQueue.add('process-event', {
-        eventId: event.id,
-        leadId: event.leadId,
-        eventType: event.eventType,
-        timestamp: event.timestamp,
-      });
+      // Process immediately
+      logger.info(`Processing event immediately: ${event.id}`);
+      const result = await this.processEvent(event, io);
 
-      logger.info(`Event created and queued: ${event.id}`);
-      return { success: true, event };
+      return { success: true, event, result };
     } catch (error) {
       logger.error('Error creating event:', error);
       throw error;
     }
   }
 
-  static async createBatchEvents(eventsData) {
+  static async processEvent(event, io = null) {
+    try {
+      // Check if event should be processed (event ordering)
+      const shouldProcess = await this.shouldProcessEvent(event.leadId, event.timestamp);
+      
+      if (!shouldProcess) {
+        logger.info(`Event ${event.id} ignored due to event ordering rules`);
+        return { success: true, message: 'Event ignored due to ordering' };
+      }
+
+      // Process the score
+      const updatedLead = await ScoringService.processEventScore(event.leadId, event.eventType, event.id);
+
+      // Mark event as processed
+      await prisma.event.update({
+        where: { id: event.id },
+        data: { processed: true },
+      });
+
+      // Emit real-time update via Socket.IO if available
+      if (io) {
+        io.emit('score-updated', {
+          leadId: updatedLead.id,
+          newScore: updatedLead.currentScore,
+          eventType: event.eventType,
+          timestamp: new Date(),
+        });
+
+        io.emit('leaderboard-updated');
+      }
+
+      logger.info(`Event processed successfully: ${event.id}`);
+      return { success: true, leadId: updatedLead.id, newScore: updatedLead.currentScore };
+    } catch (error) {
+      logger.error(`Error processing event ${event.id}:`, error);
+      throw error;
+    }
+  }
+
+  static async createBatchEvents(eventsData, io = null) {
     const results = [];
     const errors = [];
 
     for (const eventData of eventsData) {
       try {
-        const result = await this.createEvent(eventData);
+        const result = await this.createEvent(eventData, io);
         results.push(result);
       } catch (error) {
         errors.push({

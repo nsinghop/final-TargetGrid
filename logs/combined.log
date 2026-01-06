@@ -1032,3 +1032,52 @@
 {"level":"debug","message":"Query: SELECT \"public\".\"leads\".\"id\", \"public\".\"leads\".\"email\", \"public\".\"leads\".\"firstName\", \"public\".\"leads\".\"lastName\", \"public\".\"leads\".\"company\", \"public\".\"leads\".\"phone\", \"public\".\"leads\".\"currentScore\", \"public\".\"leads\".\"maxScore\", \"public\".\"leads\".\"lastProcessedEventTime\", \"public\".\"leads\".\"createdAt\", \"public\".\"leads\".\"updatedAt\" FROM \"public\".\"leads\" WHERE 1=1 ORDER BY \"public\".\"leads\".\"currentScore\" DESC LIMIT $1 OFFSET $2 - Duration: 229ms","service":"targetgrid-backend","timestamp":"2026-01-06T18:54:06.278Z"}
 {"level":"debug","message":"Query: SELECT COUNT(*) FROM (SELECT \"public\".\"leads\".\"id\" FROM \"public\".\"leads\" WHERE 1=1 OFFSET $1) AS \"sub\" - Duration: 251ms","service":"targetgrid-backend","timestamp":"2026-01-06T18:54:06.300Z"}
 {"level":"debug","message":"Query: SELECT \"public\".\"leads\".\"id\", \"public\".\"leads\".\"email\", \"public\".\"leads\".\"firstName\", \"public\".\"leads\".\"lastName\", \"public\".\"leads\".\"company\", \"public\".\"leads\".\"currentScore\" FROM \"public\".\"leads\" WHERE 1=1 ORDER BY \"public\".\"leads\".\"currentScore\" DESC LIMIT $1 OFFSET $2 - Duration: 232ms","service":"targetgrid-backend","timestamp":"2026-01-06T18:54:06.469Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:37.321Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:37.323Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:37.510Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:37.510Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:37.742Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:37.743Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:37.963Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:37.963Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:38.134Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:38.134Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:38.331Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:38.331Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:38.742Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:38.742Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:38.991Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:38.991Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.490Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.491Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.575Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.575Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.659Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.659Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.743Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.744Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.827Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.827Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.910Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.911Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.994Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:39.994Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.078Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.079Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.161Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.162Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.244Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.245Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.328Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.328Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.413Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.413Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.495Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.496Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.580Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.580Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.662Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:03:40.662Z"}
+{"level":"info","message":"Prisma info: Starting a postgresql pool with 23 connections.","service":"targetgrid-backend","target":"quaint::pooled","timestamp":"2026-01-06T19:10:30.309Z"}
+{"level":"debug","message":"Query: BEGIN - Duration: 229ms","service":"targetgrid-backend","timestamp":"2026-01-06T19:10:32.293Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","service":"targetgrid-backend","timestamp":"2026-01-06T19:10:32.779Z"}

@@ -15,9 +15,9 @@ import webhookRoutes from './routes/webhookRoutes.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { apiLimiter, eventLimiter, uploadLimiter } from './middlewares/rateLimiter.js';
 
-// Import services and workers
+// Import services and controllers
 import { ScoringService } from './services/scoringService.js';
-import eventWorker, { setSocketIO } from './workers/eventWorker.js';
+import { EventController } from './controllers/eventController.js';
 import logger from './utils/logger.js';
 
 // Load environment variables
@@ -32,8 +32,8 @@ const io = new Server(server, {
   }
 });
 
-// Set Socket.IO instance for worker
-setSocketIO(io);
+// Set Socket.IO instance for event controller
+EventController.setSocketIO(io);
 
 // Security middleware
 app.use(helmet());
@@ -120,9 +120,6 @@ async function startServer() {
 process.on('SIGTERM', async () => {
   logger.info('SIGTERM received, shutting down gracefully');
   
-  // Close event worker
-  await eventWorker.close();
-  
   // Close server
   server.close(() => {
     logger.info('Server closed');
@@ -132,9 +129,6 @@ process.on('SIGTERM', async () => {
 
 process.on('SIGINT', async () => {
   logger.info('SIGINT received, shutting down gracefully');
-  
-  // Close event worker
-  await eventWorker.close();
   
   // Close server
   server.close(() => {

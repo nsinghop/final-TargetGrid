@@ -6,6 +6,10 @@ import csv from 'csv-parser';
 import { Readable } from 'stream';
 
 export class EventController {
+  static setSocketIO(io) {
+    this.io = io;
+  }
+
   static async createEvent(req, res) {
     try {
       const { error, value } = eventSchema.validate(req.body);
@@ -28,7 +32,7 @@ export class EventController {
       const result = await EventService.createEvent({
         ...value,
         lead_id: lead.id,
-      });
+      }, this.io);
 
       res.status(201).json(result);
     } catch (error) {
@@ -50,7 +54,7 @@ export class EventController {
         });
       }
 
-      const result = await EventService.createBatchEvents(value);
+      const result = await EventService.createBatchEvents(value, this.io);
       res.status(201).json(result);
     } catch (error) {
       logger.error('Error in createBatchEvents:', error);
@@ -94,7 +98,7 @@ export class EventController {
             })
             .on('end', async () => {
               try {
-                const result = await EventService.createBatchEvents(events);
+                const result = await EventService.createBatchEvents(events, this.io);
                 resolve(res.status(201).json(result));
               } catch (error) {
                 reject(error);
@@ -109,7 +113,7 @@ export class EventController {
         });
       }
 
-      const result = await EventService.createBatchEvents(events);
+      const result = await EventService.createBatchEvents(events, this.io);
       res.status(201).json(result);
     } catch (error) {
       logger.error('Error in uploadEvents:', error);
