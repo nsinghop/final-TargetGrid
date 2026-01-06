@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id                      String   @id @default(uuid())
+  email                   String   @unique
+  firstName               String?
+  lastName                String?
+  company                 String?
+  phone                   String?
+  currentScore            Int      @default(0)
+  maxScore                Int      @default(1000)
+  lastProcessedEventTime  DateTime?
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  events        Event[]
+  scoreHistory  ScoreHistory[]
+
+  @@map("leads")
+}
+
+model Event {
+  id          String    @id @default(uuid())
+  eventId     String    @unique // For idempotency
+  leadId      String
+  eventType   EventType
+  timestamp   DateTime
+  metadata    Json?
+  processed   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+
+  lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([timestamp])
+  @@index([eventType])
+  @@index([processed])
+  @@map("events")
+}
+
+model ScoreHistory {
+  id            String    @id @default(uuid())
+  leadId        String
+  previousScore Int
+  newScore      Int
+  eventId       String?
+  eventType     EventType?
+  reason        String
+  timestamp     DateTime  @default(now())
+
+  lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([timestamp])
+  @@map("score_history")
+}
+
+model ScoringRule {
+  id          String    @id @default(uuid())
+  eventType   EventType @unique
+  points      Int
+  enabled     Boolean   @default(true)
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("scoring_rules")
+}
+
+enum EventType {
+  PAGE_VIEW
+  EMAIL_OPEN
+  FORM_SUBMIT
+  DEMO_REQUEST
+  PURCHASE
+}
