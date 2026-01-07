@@ -27,13 +27,10 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-    credentials: true
+    origin: "*", // Allow all origins
+    methods: ["GET", "POST"]
   }
 });
-
-
 
 // Set Socket.IO instance for event controller
 EventController.setSocketIO(io);
@@ -41,7 +38,7 @@ EventController.setSocketIO(io);
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+  origin: "*", // Allow all origins for now
   credentials: true
 }));
 
