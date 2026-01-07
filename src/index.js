@@ -27,10 +27,12 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://targetgrid.codesingh.in" || "http://localhost:5173",
-    methods: ["GET", "POST"]
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
+
 
 // Set Socket.IO instance for event controller
 EventController.setSocketIO(io);
